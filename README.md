@@ -1,56 +1,120 @@
+<div align="center">
+
 # Vibe Coding Guide
 
-语言版本：中文 | [English](./README.en.md)
+**Turn AI coding from chaotic prompting into an engineering workflow.**
 
-## 项目介绍
+[Read the English Guide](./vibe-coding-guide-en.md) · [中文说明](./README_zh.md) · [中文教程](./vibe-coding-guide-zh.md)
 
-这是一个面向 AI Agent 协作开发的 Vibe Coding 实战教程仓库。
+![Guide](https://img.shields.io/badge/type-practical%20guide-111827)
+![Languages](https://img.shields.io/badge/languages-English%20%7C%20Chinese-2563eb)
+![Format](https://img.shields.io/badge/format-Markdown-0f766e)
+![Audience](https://img.shields.io/badge/audience-AI%20coding%20users-7c3aed)
 
-本仓库包含中文原版与英文版本，覆盖从写 spec、维护 AGENTS.md、管理上下文，到 subagent、workflow、worktree、skill、CI/CD 和 Agent 行为测试的完整实践。
+</div>
 
-这份教程强调的不是“让 AI 自动写代码”，而是如何像工程负责人一样指挥 Agent：给清楚的上下文，拆分任务，审查 diff，沉淀项目知识，用测试和 CI 把 Agent 产出的代码管住。
+---
 
-## 文档
+## Why This Guide Exists
 
-- 中文版：[vibe-coding-guide-zh.md](./vibe-coding-guide-zh.md)
-- English version: [vibe-coding-guide-en.md](./vibe-coding-guide-en.md)
+AI coding tools can generate code quickly. The hard part is making that output useful, reviewable, and safe to ship.
 
-## 适合谁读
+This guide teaches **Vibe Coding as an engineering practice**: how to write specs, feed agents the right context, review their work, manage long sessions, use subagents, run parallel worktrees, create reusable skills, and build CI/testing guardrails around agent-written code.
 
-- 正在使用 Codex、Claude Code、Cursor、Aider 等 AI Coding 工具的人
-- 想把 AI Agent 纳入日常开发流程的工程师
-- 需要组织多个 Agent、多个 worktree 或多个 session 协作的人
-- 正在建设团队级 AI coding 规范、skill、CI 和 review 流程的人
+The goal is not to "let AI code for you." The goal is to become a better operator of AI agents.
 
-## 核心主题
+## Start Here
 
-- 如何写清楚 spec，并把验收标准变成 Agent 的工作边界
-- 如何维护 AGENTS.md / CLAUDE.md，让项目知识长期沉淀
-- 如何管理上下文窗口，什么时候压缩、切换、清零
-- 如何使用 subagent、workflow 和多 Agent 协作模式
-- 如何用 git worktree 支撑并行开发
-- 如何把重复任务固化成 Skill
-- 如何区分 system prompt 与 user prompt
-- 如何用 CI/CD 和测试约束 Agent 产出的代码质量
-- 如何测试 Agent 行为本身，而不只是测试普通代码
+| If you want to... | Go here |
+|---|---|
+| Read the full English tutorial | [vibe-coding-guide-en.md](./vibe-coding-guide-en.md) |
+| Read the full Chinese tutorial | [vibe-coding-guide-zh.md](./vibe-coding-guide-zh.md) |
+| Share the Chinese repository intro | [README_zh.md](./README_zh.md) |
+| Skim the core workflow first | Chapters 1-5 |
+| Learn parallel agent work | Chapters 6-9 |
+| Build team-level practice | Chapters 10-13 |
+| Audit your habits and anti-patterns | Chapters 14-16 |
 
-## 建议阅读路径
+## The Core Loop
 
-1. 先读中文版或英文版的第 1-5 章，建立 Vibe Coding 的基本工作方式。
-2. 如果你要并行开发，重点读第 6-9 章。
-3. 如果你要把流程产品化或团队化，重点读第 10-13 章。
-4. 最后用第 14-16 章检查自己的日常工作流和反模式。
+```mermaid
+flowchart LR
+    A["Spec"] --> B["Context"]
+    B --> C["Agent Plan"]
+    C --> D["Implementation"]
+    D --> E["Diff Review"]
+    E --> F["Tests and CI"]
+    F --> G["Commit"]
+    G --> H["Docs and Handoff"]
+    H --> A
+```
 
-## 仓库结构
+Vibe Coding works when this loop is explicit. Every phase should be observable, reviewable, and recoverable through files and git.
+
+## What You Will Learn
+
+| Area | Chapters | Outcome |
+|---|---:|---|
+| Foundations | 1-5 | Write better specs, maintain `AGENTS.md`, and manage context windows |
+| Agent Coordination | 6-9 | Use subagents, workflows, multi-agent patterns, `.gitignore`, and worktrees |
+| Reusable Practice | 10-13 | Create skills, separate system/user prompts, set up CI/CD, and test agent behavior |
+| Judgment | 14-16 | Build durable habits and avoid common failure modes |
+
+## Who This Is For
+
+- Developers using Codex, Claude Code, Cursor, Aider, or similar AI coding tools
+- Engineers who want AI agents to fit into a real development workflow
+- Teams coordinating specs, sessions, worktrees, reviews, and CI
+- Builders creating prompts, skills, subagents, or AI-assisted engineering systems
+
+## Chapter Map
+
+| Chapter | Topic |
+|---:|---|
+| 1 | What Vibe Coding is and what your role becomes |
+| 2 | Specs as the starting point for useful agent work |
+| 3 | What belongs in `AGENTS.md` / `CLAUDE.md` |
+| 4 | Cold-starting new and inherited projects |
+| 5 | Context management, compression, handoffs, and resets |
+| 6 | Subagents and context isolation |
+| 7 | Workflow patterns and multi-agent collaboration |
+| 8 | `.gitignore` as repository hygiene |
+| 9 | Git worktrees for parallel agent development |
+| 10 | Skills as reusable task workflows |
+| 11 | System prompts vs user prompts |
+| 12 | CI/CD guardrails for agent-written code |
+| 13 | Testing ordinary code and testing agent behavior |
+| 14 | Advanced operating principles |
+| 15 | A complete multi-day workflow example |
+| 16 | Anti-patterns checklist |
+
+## Repository Structure
 
 ```text
 .
-├── README.md
-├── README.en.md
-├── vibe-coding-guide-zh.md
-└── vibe-coding-guide-en.md
+├── README.md                  # English repository introduction
+├── README_zh.md               # Chinese repository introduction
+├── vibe-coding-guide-en.md    # Full English tutorial
+└── vibe-coding-guide-zh.md    # Full Chinese tutorial
 ```
 
-## 许可
+## How To Use This Guide
 
-当前尚未指定开源许可证。如果要公开复用、转载或二次分发，建议先补充明确的 License。
+Read it like a field manual, not a blog post.
+
+1. Pick one real coding workflow you already do with AI.
+2. Write a spec for it.
+3. Add the recurring project rules to `AGENTS.md`.
+4. Run one small task with an agent.
+5. Review the diff, run verification, and commit.
+6. Write down what the agent got wrong so the next run improves.
+
+Repeat the loop until your workflow becomes predictable.
+
+## Project Status
+
+This is a documentation-first repository. The current content is complete enough to read end-to-end, but it is expected to evolve as AI coding tools and agent workflows change.
+
+## License
+
+No license has been specified yet. Add one before redistributing or reusing this material in a public project.
