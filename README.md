@@ -30,6 +30,7 @@ The goal is not to "let AI code for you." The goal is to become a better operato
 
 | If you want to... | Go here |
 |---|---|
+| Follow the 16-day Feynman learning checklist | [Website](https://lling0000.github.io/Vibe_coding_guide/) |
 | Read the full English tutorial | [vibe-coding-guide-en.md](./vibe-coding-guide-en.md) |
 | Read the full Chinese tutorial | [vibe-coding-guide-zh.md](./vibe-coding-guide-zh.md) |
 | Download the English PDF | [vibe-coding-guide-en.pdf](./vibe-coding-guide-en.pdf) |
@@ -97,8 +98,8 @@ Vibe Coding works when this loop is explicit. Every phase should be observable, 
 
 ```text
 .
-├── index.html                 # GitHub Pages reader website
-├── assets/                    # Site styles and client-side Markdown rendering
+├── index.html                 # GitHub Pages learning checklist and reader website
+├── assets/                    # Site styles, visual asset, and client-side rendering
 ├── README.md                  # English repository introduction
 ├── README_zh.md               # Chinese repository introduction
 ├── vibe-coding-guide-en.md    # Full English tutorial
@@ -109,7 +110,7 @@ Vibe Coding works when this loop is explicit. Every phase should be observable, 
 
 ## How To Use This Guide
 
-Read it like a field manual, not a blog post.
+Read it like a field manual, not a blog post. The website adds a 16-day Feynman loop: Day 1 studies Part 1, Day 2 reviews Parts 1-2, and so on until Day 16. Each day has checkable recall, explain, repair, and apply tasks, with progress saved in your browser.
 
 1. Pick one real coding workflow you already do with AI.
 2. Write a spec for it.

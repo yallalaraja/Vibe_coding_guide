@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Vibe Coding Guide: a bilingual field guide for turning AI coding into an engineering workflow."
+      content="Vibe Coding Guide: a Feynman-style daily learning checklist and bilingual field guide for AI coding workflows."
     />
     <meta name="theme-color" content="#f6faf8" />
     <meta property="og:title" content="Vibe Coding Guide" />
     <meta
       property="og:description"
-      content="Turn AI coding from chaotic prompting into an engineering workflow."
+      content="A 16-day Feynman learning plan for turning AI coding into repeatable engineering practice."
     />
     <meta property="og:type" content="website" />
     <title>Vibe Coding Guide</title>
-    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/styles.css?v=20260530" />
     <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.475.0/dist/umd/lucide.min.js"></script>
-    <script defer src="./assets/site.js"></script>
+    <script defer src="./assets/site.js?v=20260530"></script>
   </head>
-  <body>
+  <body data-mode="planner">
     <div class="site-progress" aria-hidden="true">
       <span id="reading-progress"></span>
     </div>
@@ -30,19 +30,31 @@
     <header class="topbar">
       <a class="brand" href="./" aria-label="Vibe Coding Guide home">
         <span class="brand-mark" aria-hidden="true">VC</span>
-        <span>
+        <span class="brand-copy">
           <span class="brand-name">Vibe Coding Guide</span>
-          <span class="brand-line">AI coding as engineering practice</span>
+          <span class="brand-line" id="brand-line">费曼式 AI Coding 学习路线</span>
         </span>
       </a>
 
       <div class="topbar-actions">
-        <div class="segmented" aria-label="Language">
+        <div class="segmented view-toggle" aria-label="View mode">
+          <button type="button" class="segmented-button is-active" data-mode="planner" aria-pressed="true">
+            <i data-lucide="list-checks" aria-hidden="true"></i>
+            <span id="planner-mode-label">学习清单</span>
+          </button>
+          <button type="button" class="segmented-button" data-mode="reader" aria-pressed="false">
+            <i data-lucide="book-open-text" aria-hidden="true"></i>
+            <span id="reader-mode-label">全文阅读</span>
+          </button>
+        </div>
+
+        <div class="segmented lang-toggle" aria-label="Language">
           <button type="button" class="segmented-button" data-lang="zh">中文</button>
           <button type="button" class="segmented-button" data-lang="en">EN</button>
         </div>
+
         <a class="icon-button" id="pdf-link" href="./vibe-coding-guide-zh.pdf" title="PDF" aria-label="PDF">
-          <i data-lucide="file-down"></i>
+          <i data-lucide="file-down" aria-hidden="true"></i>
         </a>
         <a
           class="icon-button"
@@ -50,17 +62,40 @@
           title="GitHub"
           aria-label="GitHub"
         >
-          <i data-lucide="github"></i>
+          <i data-lucide="github" aria-hidden="true"></i>
         </a>
       </div>
     </header>
 
     <main class="app-shell">
       <aside class="sidebar" aria-label="Guide navigation">
-        <div class="sidebar-sticky">
+        <div class="sidebar-sticky planner-sidebar" id="planner-nav">
+          <div class="side-heading">
+            <p class="eyebrow" id="planner-nav-kicker">Feynman Loop</p>
+            <h2 id="planner-nav-title">16 天学习清单</h2>
+            <p id="planner-nav-copy">每天复习旧章节，再新增一章。</p>
+          </div>
+
+          <div class="side-stat" aria-label="Overall progress">
+            <span id="side-progress-label">总进度</span>
+            <strong id="side-progress-value">0%</strong>
+            <span class="mini-progress" aria-hidden="true"><span id="side-progress-bar"></span></span>
+          </div>
+
+          <nav class="day-rail" aria-label="Daily learning plan">
+            <ol id="day-list"></ol>
+          </nav>
+
+          <button type="button" class="sidebar-action" id="reset-all-button">
+            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            <span id="reset-all-label">重置全部进度</span>
+          </button>
+        </div>
+
+        <div class="sidebar-sticky reader-sidebar" id="reader-nav" hidden>
           <label class="search-wrap">
             <i data-lucide="search" aria-hidden="true"></i>
-            <input id="toc-search" type="search" autocomplete="off" placeholder="Search chapters" />
+            <input id="toc-search" type="search" autocomplete="off" placeholder="搜索章节" />
           </label>
 
           <nav class="toc" aria-label="Table of contents">
@@ -69,36 +104,117 @@
         </div>
       </aside>
 
-      <section class="reader">
-        <div class="reader-hero">
-          <p class="eyebrow">Field guide</p>
-          <h1>Turn AI coding into a repeatable workflow.</h1>
-          <p class="reader-summary">
-            Specs, context, subagents, worktrees, skills, CI, testing, and review habits for builders who want AI agents to produce work they can trust.
-          </p>
-          <div class="reader-metrics" aria-label="Guide highlights">
-            <span id="metric-chapters"><strong>16</strong> chapters</span>
-            <span id="metric-languages"><strong>2</strong> languages</span>
-            <span id="metric-pdf"><strong>PDF</strong> included</span>
+      <section class="workspace">
+        <section class="planner-view" id="planner-view" aria-labelledby="planner-title">
+          <div class="learning-hero">
+            <div class="learning-hero-copy">
+              <p class="eyebrow" id="planner-kicker">Feynman Sprint</p>
+              <h1 id="planner-title">Day 1：累计学到第 1 部分</h1>
+              <p id="planner-summary">
+                今天只学第一部分：先读懂，再用自己的话讲清楚，最后落到一个真实工作动作。
+              </p>
+
+              <div class="hero-actions">
+                <button type="button" class="text-button" id="prev-day-button">
+                  <i data-lucide="chevron-left" aria-hidden="true"></i>
+                  <span id="prev-day-label">前一天</span>
+                </button>
+                <button type="button" class="text-button primary" id="next-day-button">
+                  <span id="next-day-label">下一天</span>
+                  <i data-lucide="chevron-right" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="text-button" id="open-reader-button">
+                  <i data-lucide="book-open-text" aria-hidden="true"></i>
+                  <span id="open-reader-label">打开原文</span>
+                </button>
+              </div>
+            </div>
+
+            <figure class="hero-visual">
+              <img src="./assets/feynman-board.png?v=20260530" alt="" aria-hidden="true" />
+              <figcaption id="hero-visual-caption">阅读、复述、查漏、应用</figcaption>
+            </figure>
           </div>
-        </div>
 
-        <div class="reader-toolbar">
-          <span id="doc-status">Loading guide...</span>
-          <button type="button" class="text-button" id="top-button">
-            <i data-lucide="arrow-up"></i>
-            <span>Top</span>
-          </button>
-        </div>
+          <div class="stats-grid" aria-label="Learning progress">
+            <div class="stat-tile">
+              <span id="scope-stat-label">今日范围</span>
+              <strong id="scope-stat-value">1 part</strong>
+            </div>
+            <div class="stat-tile">
+              <span id="today-stat-label">今日完成</span>
+              <strong id="today-stat-value">0/0</strong>
+              <span class="tile-progress" aria-hidden="true"><span id="today-progress-bar"></span></span>
+            </div>
+            <div class="stat-tile">
+              <span id="overall-stat-label">总进度</span>
+              <strong id="overall-stat-value">0%</strong>
+              <span class="tile-progress" aria-hidden="true"><span id="overall-progress-bar"></span></span>
+            </div>
+          </div>
 
-        <article id="guide-content" class="prose" aria-live="polite"></article>
+          <section class="scope-section" aria-labelledby="scope-title">
+            <div class="section-heading">
+              <p class="eyebrow" id="scope-kicker">Cumulative Scope</p>
+              <h2 id="scope-title">今天学习范围</h2>
+            </div>
+            <div class="scope-list" id="scope-list"></div>
+          </section>
+
+          <section class="note-section" aria-labelledby="note-title">
+            <div class="section-heading">
+              <p class="eyebrow" id="note-kicker">Teach Back</p>
+              <h2 id="note-title">费曼讲解草稿</h2>
+            </div>
+            <textarea id="explain-note" rows="5" placeholder="我会这样向一个刚开始用 AI Coding 的朋友解释今天的内容..."></textarea>
+          </section>
+
+          <section class="checklist-section" aria-labelledby="checklist-title">
+            <div class="section-heading split">
+              <div>
+                <p class="eyebrow" id="checklist-kicker">Daily List</p>
+                <h2 id="checklist-title">今日任务清单</h2>
+              </div>
+              <button type="button" class="text-button" id="reset-day-button">
+                <i data-lucide="refresh-cw" aria-hidden="true"></i>
+                <span id="reset-day-label">重置今天</span>
+              </button>
+            </div>
+            <div class="checklist-groups" id="checklist"></div>
+          </section>
+        </section>
+
+        <section class="reader-view" id="reader-view" aria-labelledby="reader-title" hidden>
+          <div class="reader-hero">
+            <p class="eyebrow" id="reader-kicker">Field Guide</p>
+            <h1 id="reader-title">把 AI Coding 变成可复用的工程工作流。</h1>
+            <p class="reader-summary" id="reader-summary">
+              从 spec、上下文、subagent、worktree、skill，到 CI、测试和审查习惯，帮你把 Agent 产出的代码管得住、交得出。
+            </p>
+            <div class="reader-metrics" aria-label="Guide highlights">
+              <span id="metric-chapters"><strong>16</strong> 章</span>
+              <span id="metric-languages"><strong>2</strong> 种语言</span>
+              <span id="metric-pdf"><strong>PDF</strong> 已包含</span>
+            </div>
+          </div>
+
+          <div class="reader-toolbar">
+            <span id="doc-status">Loading guide...</span>
+            <button type="button" class="text-button" id="top-button">
+              <i data-lucide="arrow-up" aria-hidden="true"></i>
+              <span id="top-label">顶部</span>
+            </button>
+          </div>
+
+          <article id="guide-content" class="prose" aria-live="polite"></article>
+        </section>
       </section>
     </main>
 
     <noscript>
       <main class="noscript">
         <h1>Vibe Coding Guide</h1>
-        <p>This site needs JavaScript to render the Markdown guide. You can still read the source files directly:</p>
+        <p>This site needs JavaScript to render the learning checklist and Markdown guide. You can still read the source files directly:</p>
         <p>
           <a href="./vibe-coding-guide-zh.md">中文教程</a>
           <a href="./vibe-coding-guide-en.md">English guide</a>
