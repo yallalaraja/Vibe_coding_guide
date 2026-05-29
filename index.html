@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Vibe Coding Guide: a bilingual field guide for turning AI coding into an engineering workflow."
+    />
+    <meta name="theme-color" content="#f6faf8" />
+    <meta property="og:title" content="Vibe Coding Guide" />
+    <meta
+      property="og:description"
+      content="Turn AI coding from chaotic prompting into an engineering workflow."
+    />
+    <meta property="og:type" content="website" />
+    <title>Vibe Coding Guide</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.475.0/dist/umd/lucide.min.js"></script>
+    <script defer src="./assets/site.js"></script>
+  </head>
+  <body>
+    <div class="site-progress" aria-hidden="true">
+      <span id="reading-progress"></span>
+    </div>
+
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Vibe Coding Guide home">
+        <span class="brand-mark" aria-hidden="true">VC</span>
+        <span>
+          <span class="brand-name">Vibe Coding Guide</span>
+          <span class="brand-line">AI coding as engineering practice</span>
+        </span>
+      </a>
+
+      <div class="topbar-actions">
+        <div class="segmented" aria-label="Language">
+          <button type="button" class="segmented-button" data-lang="zh">中文</button>
+          <button type="button" class="segmented-button" data-lang="en">EN</button>
+        </div>
+        <a class="icon-button" id="pdf-link" href="./vibe-coding-guide-zh.pdf" title="PDF" aria-label="PDF">
+          <i data-lucide="file-down"></i>
+        </a>
+        <a
+          class="icon-button"
+          href="https://github.com/Lling0000/Vibe_coding_guide"
+          title="GitHub"
+          aria-label="GitHub"
+        >
+          <i data-lucide="github"></i>
+        </a>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Guide navigation">
+        <div class="sidebar-sticky">
+          <label class="search-wrap">
+            <i data-lucide="search" aria-hidden="true"></i>
+            <input id="toc-search" type="search" autocomplete="off" placeholder="Search chapters" />
+          </label>
+
+          <nav class="toc" aria-label="Table of contents">
+            <ol id="toc-list"></ol>
+          </nav>
+        </div>
+      </aside>
+
+      <section class="reader">
+        <div class="reader-hero">
+          <p class="eyebrow">Field guide</p>
+          <h1>Turn AI coding into a repeatable workflow.</h1>
+          <p class="reader-summary">
+            Specs, context, subagents, worktrees, skills, CI, testing, and review habits for builders who want AI agents to produce work they can trust.
+          </p>
+          <div class="reader-metrics" aria-label="Guide highlights">
+            <span id="metric-chapters"><strong>16</strong> chapters</span>
+            <span id="metric-languages"><strong>2</strong> languages</span>
+            <span id="metric-pdf"><strong>PDF</strong> included</span>
+          </div>
+        </div>
+
+        <div class="reader-toolbar">
+          <span id="doc-status">Loading guide...</span>
+          <button type="button" class="text-button" id="top-button">
+            <i data-lucide="arrow-up"></i>
+            <span>Top</span>
+          </button>
+        </div>
+
+        <article id="guide-content" class="prose" aria-live="polite"></article>
+      </section>
+    </main>
+
+    <noscript>
+      <main class="noscript">
+        <h1>Vibe Coding Guide</h1>
+        <p>This site needs JavaScript to render the Markdown guide. You can still read the source files directly:</p>
+        <p>
+          <a href="./vibe-coding-guide-zh.md">中文教程</a>
+          <a href="./vibe-coding-guide-en.md">English guide</a>
+        </p>
+      </main>
+    </noscript>
+  </body>
+</html>

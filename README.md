@@ -6,6 +6,7 @@
 
 [Read the English Guide](./vibe-coding-guide-en.md) · [中文 README](./README_zh.md) · [中文教程](./vibe-coding-guide-zh.md)
 
+[Website](https://lling0000.github.io/Vibe_coding_guide/) ·
 [English PDF](./vibe-coding-guide-en.pdf) · [中文 PDF](./vibe-coding-guide-zh.pdf)
 
 ![Guide](https://img.shields.io/badge/type-practical%20guide-111827)
@@ -96,6 +97,8 @@ Vibe Coding works when this loop is explicit. Every phase should be observable, 
 
 ```text
 .
+├── index.html                 # GitHub Pages reader website
+├── assets/                    # Site styles and client-side Markdown rendering
 ├── README.md                  # English repository introduction
 ├── README_zh.md               # Chinese repository introduction
 ├── vibe-coding-guide-en.md    # Full English tutorial
